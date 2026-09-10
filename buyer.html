@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>iCustom — Marketplace</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f8f9fb;
+            color: #222;
+        }
+
+        nav {
+            height: 70px;
+            background: white;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 6%;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #6c4cff;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .nav-right button {
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .profile {
+            background: #6c4cff !important;
+            color: white;
+            padding: 10px 16px;
+            border-radius: 10px;
+        }
+
+        .header {
+            padding: 55px 6% 30px;
+        }
+
+        .header h1 {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 17px;
+        }
+
+        .search {
+            margin-top: 25px;
+            max-width: 650px;
+            display: flex;
+            background: white;
+            padding: 6px;
+            border-radius: 12px;
+            border: 1px solid #eee;
+        }
+
+        .search input {
+            flex: 1;
+            border: none;
+            outline: none;
+            padding: 14px;
+            font-size: 16px;
+        }
+
+        .search button {
+            background: #6c4cff;
+            color: white;
+            border: none;
+            padding: 0 22px;
+            border-radius: 9px;
+            cursor: pointer;
+        }
+
+        .categories {
+            padding: 15px 6% 35px;
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+        }
+
+        .category {
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 20px;
+            padding: 12px 20px;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+
+        .category:hover {
+            border-color: #6c4cff;
+            color: #6c4cff;
+        }
+
+        .products {
+            padding: 20px 6% 70px;
+        }
+
+        .products h2 {
+            margin-bottom: 25px;
+            font-size: 28px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 25px;
+        }
+
+        .product {
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 18px;
+            overflow: hidden;
+            transition: 0.2s;
+        }
+
+        .product:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+
+        .product-image {
+            height: 190px;
+            background: #eeeaff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 65px;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-info h3 {
+            margin-bottom: 8px;
+        }
+
+        .seller-name {
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .price {
+            font-weight: bold;
+            color: #6c4cff;
+            margin-bottom: 15px;
+        }
+
+        .customize {
+            width: 100%;
+            background: #6c4cff;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .customize:hover {
+            opacity: 0.9;
+        }
+
+        footer {
+            background: white;
+            border-top: 1px solid #eee;
+            padding: 30px;
+            text-align: center;
+            color: #777;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+
+        <div class="logo">iCustom</div>
+
+        <div class="nav-right">
+            <button onclick="goHome()">Home</button>
+            <button onclick="profile()">My Account</button>
+            <button class="profile" onclick="profile()">Profile</button>
+        </div>
+
+    </nav>
+
+
+    <section class="header">
+
+        <h1>Find something made for you.</h1>
+
+        <p>
+            Browse custom products from creators around the world.
+        </p>
+
+        <div class="search">
+
+            <input
+                id="searchInput"
+                type="text"
+                placeholder="Search custom products..."
+            >
+
+            <button onclick="searchProducts()">
+                Search
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <div class="categories">
+
+        <div class="category" onclick="category('Furniture')">
+            🛋️ Furniture
+        </div>
+
+        <div class="category" onclick="category('Clothing')">
+            👕 Clothing
+        </div>
+
+        <div class="category" onclick="category('Jewelry')">
+            💍 Jewelry
+        </div>
+
+        <div class="category" onclick="category('Art')">
+            🎨 Art
+        </div>
+
+        <div class="category" onclick="category('Home')">
+            🏠 Home
+        </div>
+
+        <div class="category" onclick="category('Other')">
+            ✨ Other
+        </div>
+
+    </div>
+
+
+    <section class="products">
+
+        <h2>Featured Custom Products</h2>
+
+        <div class="product-grid">
+
+            <div class="product">
+
+                <div class="product-image">
+                    🛋️
+                </div>
+
+                <div class="product-info">
+
+                    <h3>Custom Couch</h3>
+
+                    <div class="seller-name">
+                        By Dream Furniture
+                    </div>
+
+                    <div class="price">
+                        Starting at $500
+                    </div>
+
+                    <button
+                        class="customize"
+                        onclick="customize('Custom Couch')"
+                    >
+                        Customize
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="product">
+
+                <div class="product-image">
+                    🛏️
+                </div>
+
+                <div class="product-info">
+
+                    <h3>Custom Bed Frame</h3>
+
+                    <div class="seller-name">
+                        By WoodCraft Studio
+                    </div>
+
+                    <div class="price">
+                        Starting at $700
+                    </div>
+
+                    <button
+                        class="customize"
+                        onclick="customize('Custom Bed Frame')"
+                    >
+                        Customize
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="product">
+
+                <div class="product-image">
+                    💍
+                </div>
+
+                <div class="product-info">
+
+                    <h3>Custom Jewelry</h3>
+
+                    <div class="seller-name">
+                        By Luna Designs
+                    </div>
+
+                    <div class="price">
+                        Starting at $100
+                    </div>
+
+                    <button
+                        class="customize"
+                        onclick="customize('Custom Jewelry')"
+                    >
+                        Customize
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="product">
+
+                <div class="product-image">
+                    🎨
+                </div>
+
+                <div class="product-info">
+
+                    <h3>Custom Artwork</h3>
+
+                    <div class="seller-name">
+                        By Creative Corner
+                    </div>
+
+                    <div class="price">
+                        Starting at $75
+                    </div>
+
+                    <button
+                        class="customize"
+                        onclick="customize('Custom Artwork')"
+                    >
+                        Customize
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <footer>
+        © 2026 iCustom — Custom products made your way.
+    </footer>
+
+
+    <script>
+
+        function customize(product) {
+            alert(
+                "You selected: " +
+                product +
+                "\n\nThe customization request system will be built next!"
+            );
+        }
+
+        function searchProducts() {
+
+            const search =
+                document.getElementById("searchInput").value;
+
+            if (search.trim() === "") {
+                alert("Enter something to search for.");
+                return;
+            }
+
+            alert("Searching iCustom for: " + search);
+        }
+
+        function category(name) {
+            alert("Showing " + name + " products.");
+        }
+
+        function goHome() {
+            window.location.href = "index.html";
+        }
+
+        function profile() {
+            alert("Your iCustom account will be built next!");
+        }
+
+    </script>
+
+</body>
+</html>
