@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>iCustom — Get Started</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #f8f9fb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 25px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 850px;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: bold;
+            color: #6c4cff;
+            margin-bottom: 50px;
+        }
+
+        h1 {
+            font-size: 42px;
+            margin-bottom: 12px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+
+        .choices {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .choice {
+            background: white;
+            border: 2px solid #eee;
+            border-radius: 22px;
+            padding: 45px 30px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .choice:hover {
+            transform: translateY(-5px);
+            border-color: #6c4cff;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        .choice h2 {
+            margin-bottom: 12px;
+        }
+
+        .choice p {
+            color: #777;
+            line-height: 1.5;
+        }
+
+        .back {
+            margin-top: 35px;
+            background: transparent;
+            border: none;
+            color: #6c4cff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 650px) {
+            .choices {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 34px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="logo">iCustom</div>
+
+        <h1>What brings you to iCustom?</h1>
+
+        <p class="subtitle">
+            Choose how you want to use iCustom.
+        </p>
+
+        <div class="choices">
+
+            <div class="choice" onclick="buyer()">
+                <div class="icon">🛍️</div>
+
+                <h2>I'm a Buyer</h2>
+
+                <p>
+                    Find creators, customize products,
+                    send your ideas and order something
+                    made just for you.
+                </p>
+            </div>
+
+            <div class="choice" onclick="seller()">
+                <div class="icon">🏪</div>
+
+                <h2>I'm a Seller</h2>
+
+                <p>
+                    Create your own store, showcase your
+                    products and make custom creations
+                    for buyers around the world.
+                </p>
+            </div>
+
+        </div>
+
+        <button class="back" onclick="goBack()">
+            ← Back to iCustom
+        </button>
+
+    </div>
+
+    <script>
+
+        function buyer() {
+            window.location.href = "buyer.html";
+        }
+
+        function seller() {
+            window.location.href = "seller.html";
+        }
+
+        function goBack() {
+            window.location.href = "index.html";
+        }
+
+    </script>
+
+</body>
+</html>
