@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>iCustom — Custom Request</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f8f9fb;
+            color: #222;
+        }
+
+        nav {
+            height: 70px;
+            background: white;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            padding: 0 6%;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #6c4cff;
+            cursor: pointer;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .container h1 {
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 35px;
+            line-height: 1.5;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 18px;
+            padding: 30px;
+            margin-bottom: 25px;
+        }
+
+        .card h2 {
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        textarea,
+        input {
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 14px;
+            font-size: 16px;
+            outline: none;
+            margin-bottom: 20px;
+        }
+
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        textarea:focus,
+        input:focus {
+            border-color: #6c4cff;
+        }
+
+        .upload-box {
+            border: 2px dashed #ccc;
+            border-radius: 15px;
+            padding: 35px 20px;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .upload-box .icon {
+            font-size: 45px;
+            margin-bottom: 12px;
+        }
+
+        .upload-box p {
+            color: #777;
+            margin-bottom: 15px;
+        }
+
+        .upload-button {
+            display: inline-block;
+            background: #eeeaff;
+            color: #6c4cff;
+            padding: 12px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .upload-button input {
+            display: none;
+        }
+
+        #fileList {
+            color: #555;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .notice {
+            background: #f3f0ff;
+            border-radius: 12px;
+            padding: 18px;
+            color: #4d3bb3;
+            line-height: 1.5;
+        }
+
+        .submit {
+            width: 100%;
+            background: #6c4cff;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 16px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .submit:hover {
+            opacity: 0.9;
+        }
+
+        .back {
+            background: transparent;
+            border: none;
+            color: #6c4cff;
+            cursor: pointer;
+            margin-bottom: 25px;
+            font-size: 15px;
+        }
+
+        @media (max-width: 600px) {
+            .container h1 {
+                font-size: 30px;
+            }
+
+            .card {
+                padding: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo" onclick="goHome()">iCustom</div>
+    </nav>
+
+
+    <div class="container">
+
+        <button class="back" onclick="goBack()">
+            ← Back to marketplace
+        </button>
+
+        <h1>Create Your Custom Request</h1>
+
+        <p class="subtitle">
+            Tell the creator exactly what you want.
+            You can describe your idea and provide photos or videos
+            to help bring your vision to life.
+        </p>
+
+
+        <!-- PRODUCT -->
+        <div class="card">
+
+            <h2>What are you making?</h2>
+
+            <label for="product">
+                Product
+            </label>
+
+            <input
+                id="product"
+                type="text"
+                placeholder="Example: Custom couch"
+            >
+
+        </div>
+
+
+        <!-- DESCRIPTION -->
+        <div class="card">
+
+            <h2>Describe your idea</h2>
+
+            <label for="description">
+                What do you want the creator to make?
+            </label>
+
+            <textarea
+                id="description"
+                placeholder="Describe the size, materials, colors, design, features, measurements, etc."
+            ></textarea>
+
+        </div>
+
+
+        <!-- MEDIA -->
+        <div class="card">
+
+            <h2>Show the creator your idea</h2>
+
+            <p class="subtitle">
+                Upload as many photos and videos as you need.
+            </p>
+
+            <div class="upload-box">
+
+                <div class="icon">📸</div>
+
+                <p>
+                    Add photos and videos of your idea,
+                    examples, sketches, measurements, or inspiration.
+                </p>
+
+                <label class="upload-button">
+
+                    + Add Photos & Videos
+
+                    <input
+                        id="media"
+                        type="file"
+                        accept="image/*,video/*"
+                        multiple
+                        onchange="showFiles()"
+                    >
+
+                </label>
+
+            </div>
+
+            <div id="fileList"></div>
+
+        </div>
+
+
+        <!-- DELIVERY -->
+        <div class="card">
+
+            <h2>Delivery</h2>
+
+            <label for="destination">
+                Where should the product be shipped?
+            </label>
+
+            <input
+                id="destination"
+                type="text"
+                placeholder="Country / city"
+            >
+
+            <div class="notice">
+                🌎 iCustom is designed for worldwide shipping.
+                Final shipping costs will be calculated after the
+                creator knows the product's size and weight.
+            </div>
+
+        </div>
+
+
+        <!-- PRICE -->
+        <div class="card">
+
+            <h2>Price & Negotiation</h2>
+
+            <div class="notice">
+                💬 After you submit your request, the seller can
+                review your idea and send you a custom price.
+
+                <br><br>
+
+                The final price can include the product,
+                materials, weight, shipping, taxes, and iCustom
+                service fees.
+
+                <br><br>
+
+                You and the seller can negotiate before you agree
+                to the final price.
+            </div>
+
+        </div>
+
+
+        <button class="submit" onclick="submitRequest()">
+            Send Custom Request
+        </button>
+
+    </div>
+
+
+    <script>
+
+        function showFiles() {
+
+            const files =
+                document.getElementById("media").files;
+
+            const list =
+                document.getElementById("fileList");
+
+            list.innerHTML = "";
+
+            if (files.length === 0) {
+                return;
+            }
+
+            list.innerHTML =
+                "<strong>" +
+                files.length +
+                " file(s) selected:</strong><br>";
+
+            for (let i = 0; i < files.length; i++) {
+
+                list.innerHTML +=
+                    "• " + files[i].name + "<br>";
+            }
+        }
+
+
+        function submitRequest() {
+
+            const product =
+                document.getElementById("product").value;
+
+            const description =
+                document.getElementById("description").value;
+
+            const destination =
+                document.getElementById("destination").value;
+
+            if (
+                product.trim() === "" ||
+                description.trim() === "" ||
+                destination.trim() === ""
+            ) {
+
+                alert(
+                    "Please complete the product, description, and delivery information."
+                );
+
+                return;
+            }
+
+            alert(
+                "Your custom request has been prepared!\n\n" +
+                "The real seller messaging and order system will be connected next."
+            );
+        }
+
+
+        function goBack() {
+            window.location.href = "buyer.html";
+        }
+
+
+        function goHome() {
+            window.location.href = "index.html";
+        }
+
+    </script>
+
+</body>
+</html>
